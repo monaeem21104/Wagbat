@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* تم إضافة أنماط جديدة للرسالة التلقائية والرسالة الناجحة */
+        /* تم تحسين الأنماط للأداء والأنيميشن */
         :root {
             --primary-light: #FFFFFF;
             --primary-dark: #000000;
@@ -40,7 +40,7 @@
             color: var(--text-light);
         }
 
-        /* تم إضافة أنماط للرسالة التلقائية */
+        /* تم تحسين الرسالة التلقائية */
         .auto-text-container {
             position: relative;
             width: 100%;
@@ -52,6 +52,7 @@
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 999;
+            will-change: transform;
         }
         
         .auto-text {
@@ -64,6 +65,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            will-change: contents;
         }
         
         .auto-text i {
@@ -90,6 +92,7 @@
             top: 0;
             z-index: 1000;
             transition: var(--transition);
+            will-change: transform;
         }
 
         .dark-mode .header {
@@ -220,6 +223,7 @@
             background: linear-gradient(135deg, var(--primary-light) 0%, #f0f0f0 100%);
             position: relative;
             overflow: hidden;
+            will-change: transform;
         }
 
         .dark-mode .hero {
@@ -241,6 +245,7 @@
             color: transparent;
             animation: gradientShift 8s ease infinite;
             background-size: 200% 200%;
+            will-change: background-position;
         }
 
         @keyframes gradientShift {
@@ -272,6 +277,7 @@
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
+            will-change: transform;
         }
 
         .cta-button::before {
@@ -314,6 +320,7 @@
             animation: float 6s ease-in-out infinite;
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             box-shadow: 20px 20px 50px rgba(0,0,0,0.1);
+            will-change: transform;
         }
 
         @keyframes float {
@@ -398,6 +405,7 @@
             transition: var(--transition);
             position: relative;
             border: 1px solid #eee;
+            will-change: transform;
         }
 
         .dark-mode .menu-item {
@@ -415,6 +423,7 @@
             height: 200px;
             object-fit: cover;
             transition: var(--transition);
+            will-change: transform;
         }
 
         .menu-item:hover img {
@@ -505,6 +514,7 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            will-change: transform;
         }
 
         .order-btn::after {
@@ -636,6 +646,7 @@
             border-radius: var(--border-radius);
             backdrop-filter: blur(5px);
             transition: var(--transition);
+            will-change: transform;
         }
 
         .safety-feature:hover, .nutrition-fact:hover {
@@ -807,27 +818,43 @@
             transform: rotate(90deg);
         }
 
-        #order-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
         }
 
-        #order-form label {
-            text-align: right;
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
             font-weight: 500;
-            margin-bottom: -0.5rem;
+            color: var(--text-dark);
         }
 
-        #order-form input, #order-form textarea, #order-form select {
-            padding: 0.8rem;
+        .dark-mode .form-group label {
+            color: var(--text-light);
+        }
+
+        .form-error {
+            color: #f44336;
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 0.3rem;
+            height: 1rem;
+        }
+
+        #order-form input,
+        #order-form textarea,
+        #order-form select {
+            width: 100%;
+            padding: 0.8rem 1rem;
             border: 1px solid #ddd;
             border-radius: var(--border-radius);
             font-family: 'Tajawal', sans-serif;
             transition: var(--transition);
         }
 
-        .dark-mode #order-form input, 
+        .dark-mode #order-form input,
         .dark-mode #order-form textarea,
         .dark-mode #order-form select {
             background: #333;
@@ -835,7 +862,7 @@
             border-color: #444;
         }
 
-        #order-form input:focus, 
+        #order-form input:focus,
         #order-form textarea:focus,
         #order-form select:focus {
             outline: none;
@@ -843,7 +870,45 @@
             box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
         }
 
-        #order-form button[type="submit"] {
+        /* Quantity Controls */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background: #3d8b40;
+        }
+
+        #quantity {
+            width: 60px;
+            text-align: center;
+            margin: 0 0.5rem;
+            -moz-appearance: textfield;
+        }
+
+        #quantity::-webkit-outer-spin-button,
+        #quantity::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Submit Button */
+        .submit-btn {
             background: var(--accent-color);
             color: white;
             padding: 1rem;
@@ -854,11 +919,36 @@
             cursor: pointer;
             transition: var(--transition);
             margin-top: 1rem;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
         }
 
-        #order-form button[type="submit"]:hover {
+        .submit-btn:hover {
             background: #3d8b40;
             transform: translateY(-2px);
+        }
+
+        .btn-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .submit-btn.loading .btn-text {
+            opacity: 0;
+        }
+
+        .submit-btn.loading .btn-loading {
+            opacity: 1;
         }
 
         /* Welcome Message Styles */
@@ -975,6 +1065,135 @@
             100% { transform: scale(1); }
         }
 
+        /* Order Confirmation Animation */
+        .confirmation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 4000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .confirmation-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .confirmation-box {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.8);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .confirmation-box {
+            background: #2A2A2A;
+            color: white;
+        }
+
+        .confirmation-overlay.active .confirmation-box {
+            transform: scale(1);
+        }
+
+        .confirmation-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-color);
+            animation: progressBar 3s linear forwards;
+        }
+
+        @keyframes progressBar {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        .confirmation-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            animation: bounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both;
+        }
+
+        .confirmation-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .confirmation-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .confirmation-text {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .confirmation-details {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: right;
+        }
+
+        .dark-mode .confirmation-details {
+            background: #333;
+        }
+
+        .confirmation-details p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+
+        .confirmation-button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .confirmation-button:hover {
+            background: #388e3c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero {
@@ -1045,6 +1264,61 @@
             .auto-text {
                 font-size: 1.2rem;
             }
+            
+            .confirmation-title {
+                font-size: 1.5rem;
+            }
+            
+            .confirmation-text {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
+            
+            #order-form input, 
+            #order-form textarea, 
+            #order-form select {
+                padding: 0.7rem;
+            }
+            
+            .quantity-btn {
+                width: 35px;
+                height: 35px;
+            }
+            
+            #quantity {
+                width: 50px;
+            }
+            
+            .confirmation-box {
+                padding: 25px 15px;
+            }
+            
+            .confirmation-title {
+                font-size: 1.3rem;
+            }
+            
+            .confirmation-text {
+                font-size: 0.9rem;
+            }
+            
+            .confirmation-details {
+                padding: 10px;
+            }
+            
+            .confirmation-details p {
+                font-size: 0.8rem;
+            }
+            
+            .confirmation-button {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
         }
 
         /* Animation Classes */
@@ -1074,10 +1348,33 @@
             from { transform: translateX(-50px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
+        
+        /* Performance Optimizations */
+        .will-change {
+            will-change: transform, opacity;
+        }
+        
+        .transform-gpu {
+            transform: translateZ(0);
+        }
+        
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        
+        /* Lazy Loading */
+        .lazy {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .lazy.loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
-    <!-- تم إضافة الرسالة التلقائية هنا -->
+    <!-- تم تحسين الرسالة التلقائية -->
     <div class="auto-text-container">
         <div class="auto-text">
             <i class="fas fa-home"></i>
@@ -1094,6 +1391,25 @@
             <p>أكل مصري شعبي بطعم البيت 🏡</p>
             <p>كل الأصناف بتاعتنا بتتقدم طازجة يومياً وبأعلى معايير الجودة</p>
             <button id="close-welcome-btn">ابدأ التصفح</button>
+        </div>
+    </div>
+    
+    <!-- Order Confirmation Overlay -->
+    <div class="confirmation-overlay">
+        <div class="confirmation-box">
+            <div class="confirmation-icon">
+                <svg viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" />
+                </svg>
+            </div>
+            <h2 class="confirmation-title">تم تسجيل طلبك بنجاح!</h2>
+            <p class="confirmation-text">شكراً لثقتك بنا، تم استلام طلبك وسيتم تجهيزه في أقرب وقت</p>
+            <div class="confirmation-details">
+                <p><strong>الوجبة المطلوبة:</strong> <span id="confirmed-item"></span></p>
+                <p><strong>رقم الطلب:</strong> <span id="order-id">#12345</span></p>
+                <p><strong>الوقت المتوقع:</strong> <span id="delivery-time">30 دقيقة</span></p>
+            </div>
+            <button class="confirmation-button">موافق</button>
         </div>
     </div>
 
@@ -1145,7 +1461,7 @@
         <div class="menu-items">
             <!-- كشري -->
             <div class="menu-item slide-up">
-                <img src="images.jpeg" alt="كشري">
+                <img src="images.jpeg" alt="كشري" class="lazy" onload="this.classList.add('loaded')">
                 <div class="menu-item-content">
                     <h3>كشري وجبات </h3>
                     <p>أحسن كشري في مصر - أرز ومعكرونة وعدس وبصل مقلي وصلصة طماطم</p>
@@ -1164,7 +1480,7 @@
             
             <!-- فول وطعمية -->
             <div class="menu-item slide-up">
-                <img src="download.jpeg" alt="فول وطعمية">
+                <img src="download.jpeg" alt="فول وطعمية" class="lazy" onload="this.classList.add('loaded')">
                 <div class="menu-item-content">
                     <h3>فول وطعمية بالطريقة القديمة</h3>
                     <p>فول مدمس مع طعمية مقرمشة وزيت وليمون وخبز بلدي</p>
@@ -1183,7 +1499,7 @@
             
             <!-- محشي -->
             <div class="menu-item slide-up">
-                <img src="images (1).jpeg" alt="محشي">
+                <img src="images (1).jpeg" alt="محشي" class="lazy" onload="this.classList.add('loaded')">
                 <div class="menu-item-content">
                     <h3>محشي ورق عنب</h3>
                     <p>ورق عنب محشي بالأرز واللحم المفروم مع صلصة الطماطم</p>
@@ -1202,7 +1518,7 @@
             
             <!-- ملوخية -->
             <div class="menu-item slide-up">
-                <img src="download (1).jpeg" alt="ملوخية">
+                <img src="download (1).jpeg" alt="ملوخية" class="lazy" onload="this.classList.add('loaded')">
                 <div class="menu-item-content">
                     <h3>ملوخية بالدجاج</h3>
                     <p>ملوخية خضراء مع أرز أبيض ودجاج مشوي</p>
@@ -1221,7 +1537,7 @@
             
             <!-- مسقعة -->
             <div class="menu-item slide-up">
-                <img src="download (2).jpeg" alt="مسقعة">
+                <img src="download (2).jpeg" alt="مسقعة" class="lazy" onload="this.classList.add('loaded')">
                 <div class="menu-item-content">
                     <h3>مسقعة الباذنجان</h3>
                     <p>باذنجان مقلي مع صلصة الطماطم والثوم</p>
@@ -1240,7 +1556,7 @@
             
             <!-- شاورما -->
             <div class="menu-item slide-up">
-                <img src="download (3).jpeg" alt="شاورما">
+                <img src="download (3).jpeg" alt="شاورما" class="lazy" onload="this.classList.add('loaded')">
                 <div class="menu-item-content">
                     <h3>شاورما زيّ زمان</h3>
                     <p>شاورما دجاج أو لحم مع ثومية ومخلل في خبز صاج طازج</p>
@@ -1259,7 +1575,7 @@
             
             <!-- كباب -->
             <div class="menu-item slide-up">
-                <img src="download (4).jpeg" alt="كباب">
+                <img src="download (4).jpeg" alt="كباب" class="lazy" onload="this.classList.add('loaded')">
                 <div class="menu-item-content">
                     <h3>كباب مشوي</h3>
                     <p>كباب لحم ضاني مشوي مع أرز وخضار مشوي وصلصة ثوم</p>
@@ -1278,7 +1594,7 @@
             
             <!-- بطاطس -->
             <div class="menu-item slide-up">
-                <img src="download (5).jpeg" alt="بطاطس">
+                <img src="download (5).jpeg" alt="بطاطس" class="lazy" onload="this.classList.add('loaded')">
                 <div class="menu-item-content">
                     <h3>بطاطس بالبهارات</h3>
                     <p>بطاطس مقرمشة متبلة ببهارات سرية بتاعتنا</p>
@@ -1292,272 +1608,6 @@
                         <span>للوجبة</span>
                     </div>
                     <button class="order-btn" data-item="بطاطس بالبهارات">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- فتة -->
-            <div class="menu-item slide-up">
-                <img src="download (6).jpeg" alt="فتة">
-                <div class="menu-item-content">
-                    <h3>فتة لحم</h3>
-                    <p>خبز محمص مع لحم ضاني وصلصة طماطم وثوم</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 600 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 65ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 30ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>350 جنيه</span>
-                        <span>للوجبة</span>
-                    </div>
-                    <button class="order-btn" data-item="فتة لحم">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- بسبوسة -->
-            <div class="menu-item slide-up">
-                <img src="download (7).jpeg" alt="بسبوسة">
-                <div class="menu-item-content">
-                    <h3>بسبوسة</h3>
-                    <p>بسبوسة</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 450 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 65ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 8ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>100 جنيه</span>
-                        <span>للقطعة</span>
-                    </div>
-                    <button class="order-btn" data-item="بسبوسة بالقشطة">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- كنافة -->
-            <div class="menu-item slide-up">
-                <img src="download (8).jpeg" alt="كنافة">
-                <div class="menu-item-content">
-                    <h3>كنافة بالنعناع</h3>
-                    <p>كنافة هشّة مع جبنة موتزاريلا وقطر بالنعناع</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 480 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 75ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 10ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>120 جنيه</span>
-                        <span>للقطعة</span>
-                    </div>
-                    <button class="order-btn" data-item="كنافة بالنعناع">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- أم علي -->
-            <div class="menu-item slide-up">
-                <img src="download (9).jpeg" alt="أم علي">
-                <div class="menu-item-content">
-                    <h3>أم علي</h3>
-                    <p>خبز محمص مع مكسرات وقشطة ولبن وقطر</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 500 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 70ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 12ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>100 جنيه</span>
-                        <span>للوجبة</span>
-                    </div>
-                    <button class="order-btn" data-item="أم علي">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- كركديه -->
-            <div class="menu-item slide-up">
-                <img src="download (10).jpeg" alt="كركديه">
-                <div class="menu-item-content">
-                    <h3>كركديه زي زمان</h3>
-                    <p>كركديه مصري تقليدي (سخان أو بارد) - منعش في الصيف ودافي في الشتا</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 80 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 20ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 0ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>35 جنيه</span>
-                        <span>للزجاجة</span>
-                    </div>
-                    <button class="order-btn" data-item="كركديه">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- تمر هندي -->
-            <div class="menu-item slide-up">
-                <img src="images (2).jpeg" alt="تمر هندي">
-                <div class="menu-item-content">
-                    <h3>تمر هندي</h3>
-                    <p>مشروب التمر الهندي المصري الأصيل - منعش ولذيذ</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 90 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 22ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 0ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>35جنيه</span>
-                        <span>للزجاجة</span>
-                    </div>
-                    <button class="order-btn" data-item="تمر هندي">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- قلقاس -->
-            <div class="menu-item slide-up">
-                <img src="images (4).jpeg" alt="قلقاس">
-                <div class="menu-item-content">
-                    <h3>قلقاس باللحم</h3>
-                    <p>قلقاس مطهي مع لحم الضأن وصلصة الطماطم</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 480 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 55ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 25ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>140 جنيه</span>
-                        <span>للوجبة</span>
-                    </div>
-                    <button class="order-btn" data-item="قلقاس باللحم">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- مكرونة بشاميل -->
-            <div class="menu-item slide-up">
-                <img src="download (11).jpeg" alt="مكرونة بشاميل">
-                <div class="menu-item-content">
-                    <h3>مكرونة بشاميل</h3>
-                    <p>مكرونة مع صلصة البشاميل واللحم المفروم</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 600 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 70ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 30ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>250 جنيه</span>
-                        <span>للوجبة</span>
-                    </div>
-                    <button class="order-btn" data-item="مكرونة بشاميل">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- سمك مشوي -->
-            <div class="menu-item slide-up">
-                <img src="download (12).jpeg" alt="سمك مشوي">
-                <div class="menu-item-content">
-                    <h3>سمك مشوي</h3>
-                    <p>سمك بلطي مشوي مع طحينة وسلطة خضراء</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 500 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 40ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 45ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>280 جنيه</span>
-                        <span>للوجبة</span>
-                    </div>
-                    <button class="order-btn" data-item="سمك مشوي">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- رز باللبن -->
-            <div class="menu-item slide-up">
-                <img src="download (13).jpeg" alt="رز باللبن">
-                <div class="menu-item-content">
-                    <h3>رز باللبن</h3>
-                    <p>أرز مطهي باللبن مع قشدة وسكر</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 400 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 75ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 10ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>100 جنيه</span>
-                        <span>للوجبة</span>
-                    </div>
-                    <button class="order-btn" data-item="رز باللبن">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- حمص -->
-            <div class="menu-item slide-up">
-                <img src="download (14).jpeg" alt="حمص">
-                <div class="menu-item-content">
-                    <h3>حمص بالطحينة</h3>
-                    <p>حمص مهروس مع طحينة وزيت وليمون</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 350 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 30ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 15ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>100 جنيه</span>
-                        <span>للطبق</span>
-                    </div>
-                    <button class="order-btn" data-item="حمص بالطحينة">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- سلطة طحينة -->
-            <div class="menu-item slide-up">
-                <img src="download (15).jpeg" alt="سلطة طحينة">
-                <div class="menu-item-content">
-                    <h3>سلطة طحينة</h3>
-                    <p>طحينة مع ثوم وليمون وزيت</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 300 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 15ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 10ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>35 جنيه</span>
-                        <span>للطبق</span>
-                    </div>
-                    <button class="order-btn" data-item="سلطة طحينة">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- باذنجان -->
-            <div class="menu-item slide-up">
-                <img src="download (16).jpeg" alt="باذنجان">
-                <div class="menu-item-content">
-                    <h3>باذنجان مشوي</h3>
-                    <p>باذنجان مشوي مع طحينة وليمون</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 250 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 20ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 8ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>60 جنيه</span>
-                        <span>للطبق</span>
-                    </div>
-                    <button class="order-btn" data-item="باذنجان مشوي">اطلب دلوقتي</button>
-                </div>
-            </div>
-            
-            <!-- شاي بالنعناع -->
-            <div class="menu-item slide-up">
-                <img src="download (17).jpeg" alt="شاي بالنعناع">
-                <div class="menu-item-content">
-                    <h3>شاي بالنعناع</h3>
-                    <p>شاي مصري بالنعناع الطازج</p>
-                    <div class="nutrition-info">
-                        <span><i class="fas fa-fire"></i> 50 سعر</span>
-                        <span><i class="fas fa-bread-slice"></i> 10ج كارب</span>
-                        <span><i class="fas fa-drumstick-bite"></i> 0ج بروتين</span>
-                    </div>
-                    <div class="price">
-                        <span>15 جنيه</span>
-                        <span>للأكواب</span>
-                    </div>
-                    <button class="order-btn" data-item="شاي بالنعناع">اطلب دلوقتي</button>
                 </div>
             </div>
         </div>
@@ -1654,22 +1704,44 @@
             <span class="close-modal">&times;</span>
             <h3>اطلب <span id="item-name"></span></h3>
             <form id="order-form">
-                <label for="name">اسمك</label>
-                <input type="text" id="name" placeholder="اسمك" required>
+                <div class="form-group">
+                    <label for="name">اسمك</label>
+                    <input type="text" id="name" placeholder="اسمك" required>
+                    <span class="form-error" id="name-error"></span>
+                </div>
                 
-                <label for="phone">رقم التليفون</label>
-                <input type="tel" id="phone" placeholder="رقم التليفون" required pattern="[0-9]{10,15}" title="ادخل رقم تليفون صحيح">
+                <div class="form-group">
+                    <label for="phone">رقم التليفون</label>
+                    <input type="tel" id="phone" placeholder="رقم التليفون" required pattern="[0-9]{10,15}" title="ادخل رقم تليفون صحيح">
+                    <span class="form-error" id="phone-error"></span>
+                </div>
                 
-                <label for="address">عنوانك</label>
-                <textarea id="address" placeholder="العنوان بالتفصيل" required></textarea>
+                <div class="form-group">
+                    <label for="address">عنوانك</label>
+                    <textarea id="address" placeholder="العنوان بالتفصيل" required></textarea>
+                    <span class="form-error" id="address-error"></span>
+                </div>
                 
-                <label for="quantity">الكمية</label>
-                <input type="number" id="quantity" min="1" value="1" required>
+                <div class="form-group">
+                    <label for="quantity">الكمية</label>
+                    <div class="quantity-control">
+                        <button type="button" class="quantity-btn" id="decrease-qty">-</button>
+                        <input type="number" id="quantity" min="1" value="1" required>
+                        <button type="button" class="quantity-btn" id="increase-qty">+</button>
+                    </div>
+                </div>
                 
-                <label for="instructions">ملاحظات خاصة</label>
-                <textarea id="instructions" placeholder="مثلاً: بدون بصل أو حار"></textarea>
+                <div class="form-group">
+                    <label for="instructions">ملاحظات خاصة</label>
+                    <textarea id="instructions" placeholder="مثلاً: بدون بصل أو حار"></textarea>
+                </div>
                 
-                <button type="submit">اكمل الطلب</button>
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">اكمل الطلب</span>
+                    <span class="btn-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+                </button>
             </form>
         </div>
     </div>
@@ -1725,6 +1797,8 @@
         const closeModal = document.querySelector('.close-modal');
         const itemName = document.getElementById('item-name');
         const orderForm = document.getElementById('order-form');
+        const confirmationOverlay = document.querySelector('.confirmation-overlay');
+        const confirmationButton = document.querySelector('.confirmation-button');
 
         orderButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -1748,35 +1822,94 @@
             }
         });
 
-        // Form Submission - التعديل الرئيسي هنا
-        orderForm.addEventListener('submit', (e) => {
+        // Form Validation and Submission
+        orderForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // الحصول على بيانات الطلب
-            const item = itemName.textContent;
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
+            // Validate form
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
             const quantity = document.getElementById('quantity').value;
-            const instructions = document.getElementById('instructions').value;
+            const instructions = document.getElementById('instructions').value.trim();
+            const item = itemName.textContent;
             
-            // تخزين بيانات الطلب في localStorage
-            const orderData = {
-                item: item,
-                name: name,
-                phone: phone,
-                address: address,
-                quantity: quantity,
-                instructions: instructions,
-                // إضافة معلومات إضافية للصفحة الجديدة
-                orderId: Math.floor(Math.random() * 10000),
-                deliveryTime: Math.floor(Math.random() * 30) + 15
-            };
+            let isValid = true;
             
-            localStorage.setItem('orderData', JSON.stringify(orderData));
+            // Reset errors
+            document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
             
-            // توجيه المستخدم إلى صفحة order.html
-            window.location.href = 'order.html';
+            // Validate name
+            if (!name) {
+                document.getElementById('name-error').textContent = 'الاسم مطلوب';
+                isValid = false;
+            }
+            
+            // Validate phone
+            if (!phone) {
+                document.getElementById('phone-error').textContent = 'رقم التليفون مطلوب';
+                isValid = false;
+            } else if (!/^[0-9]{10,15}$/.test(phone)) {
+                document.getElementById('phone-error').textContent = 'رقم التليفون غير صحيح';
+                isValid = false;
+            }
+            
+            // Validate address
+            if (!address) {
+                document.getElementById('address-error').textContent = 'العنوان مطلوب';
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Show loading state
+            const submitBtn = orderForm.querySelector('button[type="submit"]');
+            submitBtn.classList.add('loading');
+            
+            // Simulate form submission (in a real app, this would be an AJAX call)
+            setTimeout(() => {
+                // Hide form and show confirmation
+                orderModal.classList.remove('active');
+                submitBtn.classList.remove('loading');
+                
+                // Set confirmation details
+                document.getElementById('confirmed-item').textContent = item;
+                
+                // Generate random order ID
+                const orderId = Math.floor(Math.random() * 90000) + 10000;
+                document.getElementById('order-id').textContent = `#${orderId}`;
+                
+                // Generate random delivery time (20-40 minutes)
+                const deliveryTime = Math.floor(Math.random() * 20) + 20;
+                document.getElementById('delivery-time').textContent = `${deliveryTime} دقيقة`;
+                
+                // Show confirmation
+                confirmationOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Reset form
+                orderForm.reset();
+                document.getElementById('quantity').value = 1;
+            }, 1500);
+        });
+
+        // Quantity Controls
+        document.getElementById('increase-qty').addEventListener('click', () => {
+            const quantityInput = document.getElementById('quantity');
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+        });
+
+        document.getElementById('decrease-qty').addEventListener('click', () => {
+            const quantityInput = document.getElementById('quantity');
+            if (parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        });
+
+        // Close confirmation
+        confirmationButton.addEventListener('click', () => {
+            confirmationOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
         });
 
         // Custom Cursor
@@ -1942,7 +2075,7 @@
             });
         });
         
-        // تم إضافة وظيفة الكتابة التلقائية
+        // وظيفة الكتابة التلقائية
         const autoTypingText = document.getElementById('auto-typing-text');
         const text = "أكل مصري شعبي بطعم البيت بس أسرع";
         let charIndex = 0;
@@ -1965,35 +2098,24 @@
         // بدء الكتابة التلقائية عند تحميل الصفحة
         window.addEventListener('load', typeText);
 
-        orderForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // جمع بيانات الفورم
-    const item = itemName.textContent;
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-    const quantity = document.getElementById('quantity').value;
-    const instructions = document.getElementById('instructions').value;
-    
-    // تخزين البيانات في localStorage
-    const orderData = {
-        item: item,
-        name: name,
-        phone: phone,
-        address: address,
-        quantity: quantity,
-        instructions: instructions,
-        orderId: Math.floor(Math.random() * 10000),
-        deliveryTime: Math.floor(Math.random() * 30) + 15
-    };
-    
-    localStorage.setItem('orderData', JSON.stringify(orderData));
-    
-    // توجيه المستخدم إلى صفحة order.html
-    window.location.href = 'order.html';
-});
-const orderData = JSON.parse(localStorage.getItem('orderData'));
+        // Lazy loading images
+        const lazyImages = document.querySelectorAll('.lazy');
+        
+        const lazyLoad = () => {
+            lazyImages.forEach(img => {
+                if (img.getBoundingClientRect().top < window.innerHeight + 100 && 
+                    img.getBoundingClientRect().bottom > 0 && 
+                    getComputedStyle(img).display !== 'none') {
+                    img.src = img.getAttribute('data-src');
+                    img.onload = () => img.classList.add('loaded');
+                }
+            });
+        };
+        
+        // Initialize lazy loading
+        document.addEventListener('DOMContentLoaded', lazyLoad);
+        window.addEventListener('scroll', lazyLoad);
+        window.addEventListener('resize', lazyLoad);
     </script>
 </body>
 </html>
